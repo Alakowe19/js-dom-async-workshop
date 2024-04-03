@@ -13,7 +13,12 @@ function setWeatherInfo(weatherInfo) {
 const cityInput = document.getElementById('city-input')
 const getWeatherButton = document.getElementById('get-weather-btn')
 
-getWeatherButton.addEventListener('click', () => {
-    const data = getWeatherSync(cityInput.value)
+getWeatherButton.addEventListener('click', async() => {
+    try {
+        const data = getWeatherSync(cityInput.value)
     setWeatherInfo(data)
+    } catch (error) {
+        weatherInfoDiv.innerHTML = `<p>Error: ${error}</p>`
+    }
+    
 })
